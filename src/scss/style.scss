@@ -1,0 +1,32 @@
+body {
+    background-image: url(https://images.unsplash.com/photo-1436891620584-47fd0e565afb?q=80&fm=jpg&s=33cf5b0ee9fbd292475a0c03bee481c9);
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    color: black;
+    text-shadow: 1px 1px 1px white;
+    text-align: center;
+}
+
+.error {
+    background-color: #d87777;
+    width: 50%;
+    margin: 20px auto;
+    font-size: 20px;
+    color: white;
+}
+
+.result {
+    font-size: 50px;
+    color: green;
+    padding: 5% 0%;
+}
+
+.full-width-slider input {
+    display: none !important;
+}
+
+.page {
+    background-color: transparent !important;
+}
+
