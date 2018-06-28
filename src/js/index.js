@@ -39,6 +39,61 @@ $(function(){
         }
     });
 
+    $("#new").click(function() {
+        location.reload();
+
+    });
+
+    $("#pause").click(function() {
+        clearInterval(action);
+        reading = false;
+
+        $("#pause").hide();
+        $("#resume").show();
+    });
+
+    $("#resume").click(function() {
+        action = setInterval(read, frequency);
+        reading = true;
+
+        $("#resume").hide();
+        $("#pause").show();
+    });
+
+    $("#fontsizeslider").on("slidestop", function(event,ui) {
+        $("#fontsizeslider").slider("refresh");
+        let slidervalue = parseInt($("#fontsizeslider").val());
+        $("#result").css("fontSize", slidervalue);
+        $("#fontsize").text(slidervalue);
+
+    });
+
+    $("#speedslider").on("slidestop", function(event,ui) {
+        $("#speedslider").slider("refresh");
+        let slidervalue = parseInt($("#speedslider").val());
+        $("#speed").text(slidervalue);
+        clearInterval(action);
+        frequency = 60000 / slidervalue;
+
+        if(reading) {
+            action = setInterval(read, frequency);
+        }
+    });
+
+    $("#progressslider").on("slidestop", function(event,ui) {
+        $("#progressslider").slider("refresh");
+        let slidervalue = parseInt($("#progressslider").val());
+        clearInterval(action);
+        counter = slidervalue;
+        $("#result").html(words[counter]);
+        $("#percentage").html(Math.floor(counter/(inputLength-1)*100));
+
+
+        if(reading) {
+            action = setInterval(read, frequency);
+        }
+    });
+
 
     function read() {
         if(counter == inputLength-1) {
@@ -49,8 +104,8 @@ $(function(){
             counter++;
             $("#result").html(words[counter]);
             $("#progressslider").val(counter).slider('refresh');
-            $("#percentage").text(Math.floor(counter/(inputLength-1)*100));
+            $("#percentage").html(Math.floor(counter/(inputLength-1)*100));
         }
-    }
+    };
 })
 
